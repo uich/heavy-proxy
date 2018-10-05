@@ -1,0 +1,10 @@
+server.port: 8889
+
+proxy:
+  schema: http
+  host: localhost
+  port: 80
+
+logging.level:
+  root: info
+  jp.uich: debug
