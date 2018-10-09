@@ -20,13 +20,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class HeavyProxyController {
 
+  static final int COUNTER_START = 10;
+
   @Autowired
   HeavyProxyProperties proxyProperties;
 
   @Autowired
   RestOperations restOps;
 
-  AtomicInteger counter = new AtomicInteger(2);
+  AtomicInteger counter = new AtomicInteger(COUNTER_START);
 
   @Autowired
   Environment environment;
@@ -42,7 +44,7 @@ public class HeavyProxyController {
     if (counter.decrementAndGet() > 0) {
       Thread.sleep(5000);
     } else {
-      counter = new AtomicInteger(2);
+      counter.set(COUNTER_START);
     }
 
     URI uri = UriComponentsBuilder.fromUri(requestEntity.getUrl())
